@@ -1,0 +1,75 @@
+import javax.swing.JOptionPane;
+
+public class Ejercicio1{
+    public static void main(String[] args){
+        int[] numeros=new int[3];
+            for (int i=0; i<numeros.length;i++){
+                int n =-1;
+                do {
+                     n=Integer.parseInt(JOptionPane.showInputDialog("Digita un numero valido"));
+                } while (!esvalido(n));
+                numeros[i]=n;
+
+            }
+            double promedio = promedio (numeros);
+            System.out.println("El promedio de los valores es: " + promedio);
+
+            int[] inferiores= inferiores(numeros, promedio);
+            System.out.println("Valores inferiores al promedio: " + promedio);
+            mostrarArreglo (inferiores);
+            int[] impares=posicionesimpares(numeros);
+            System.out.println("Valores en posiciones impares");
+            mostrarArreglo(impares);
+    }
+
+public static boolean esvalido(int n){
+    if (n > 0  && n <=100) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+public static double promedio (int[] nums) {
+    double prom=0, suma=0;
+
+    for (int i=0;i<nums.length;i++) {
+        suma=suma+nums[i];
+    }
+    prom=suma/nums.length;
+    return prom;
+}
+
+public static int[] inferiores(int[] nums,double prom){
+    int [] inferiores=new int[nums.length];
+    int indice= 0;
+    for (int i=0; i<nums.length; i++) {
+        if (nums[i]< prom) {
+            inferiores[indice]=nums[i];
+            indice++;
+        }
+    }
+    return inferiores;
+    }
+
+    public static int[]  posicionesimpares(int[] nums){
+        int[] impares=new int[nums.length];
+        int indice = 0;
+        for(int i = 0; i < nums.length; i++){
+            if (i % 2 != 0) {
+                impares[indice]=nums[i];
+                indice++;
+            }
+        }
+        return impares;
+} 
+
+public static void mostrarArreglo(int[] nums){
+    for (int i=0; i<nums.length; i++){
+        if (nums[i] > 0 ){
+            System.out.println(nums[i]);
+        }
+    }
+}
+
+}
